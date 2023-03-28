@@ -1,5 +1,6 @@
 import streamlit
 import pandas as pd
+import snowflake.connector
 streamlit.title("My Parents New Healthy Diet")
 streamlit.header(" BreakFast Menu")
 streamlit.text("🥣 Omega 3 & Blueberry oat meal")
@@ -25,7 +26,7 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 streamlit.dataframe(fruityvice_normalized)
 
 
-import snowflake.connector
+streamlit.stop()
 my_con = snowflake.connector.connect(**streamlit.secrets["snowflake"])
 my_cur = my_con.cursor()
 my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
